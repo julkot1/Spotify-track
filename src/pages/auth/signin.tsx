@@ -28,7 +28,6 @@ export default function SignIn({
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getServerSession(context.req, context.res, authOptions)
 
-  console.log(session)
   if (session) {
     return { redirect: { destination: '/' } }
   }

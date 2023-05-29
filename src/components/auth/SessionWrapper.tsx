@@ -3,6 +3,7 @@ import { useSession, signIn, signOut } from 'next-auth/react'
 import MainButton from '@/components/MainButton'
 import { ReactNode } from 'react'
 import NotSignIn from './NotSignIn'
+import { log } from 'console'
 type Props = {
   children: ReactNode
 }
