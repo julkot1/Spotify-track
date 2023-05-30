@@ -1,17 +1,24 @@
 'use client'
-import styled from 'styled-components'
-import { useSession, signIn, signOut } from 'next-auth/react'
-import MainButton from '@/components/MainButton'
-import { Session } from 'inspector'
+import { useSession, signIn, signOut, getSession } from 'next-auth/react'
 import SessionWrapper from '@/components/auth/SessionWrapper'
+import Welcome from '@/components/main/Welcome'
+import useSWR from 'swr'
+import { useRecoilState } from 'recoil'
+import { userState } from '@/utils/atoms'
+import MainButton from '@/components/MainButton'
+import { fetcher } from '@/utils/hooks'
 
 export default function Home() {
-  const { data: session } = useSession()
+  const [user, setUser] = useRecoilState(userState)
+  const { data, error } = useSWR('/api/me', fetcher)
 
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+  setUser(data)
   return (
     <SessionWrapper>
-      Signed in as {session?.user?.email} <br />
-      <MainButton onClick={() => signOut()}>Sign out</MainButton>
+      <Welcome />
     </SessionWrapper>
   )
 }
+// <MainButton onClick={() => signOut()}>Sign out</MainButton>

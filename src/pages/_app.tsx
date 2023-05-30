@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import { createGlobalStyle } from 'styled-components'
 import { Roboto } from 'next/font/google'
 import { SessionProvider } from 'next-auth/react'
+import { RecoilRoot } from 'recoil'
 
 const roboto = Roboto({
   weight: '400',
@@ -12,11 +13,12 @@ const roboto = Roboto({
 const GlobalStyles = createGlobalStyle`
 html,
 body {
+    scroll-behavior: smooth;
     padding: 0;
     margin: 0;
     background-color: ${colors.background};
     width: 100vw;
-    height: 100vh;
+    overflow-x: hidden;
 }
 
 a {
@@ -37,7 +39,9 @@ export default function MyApp({
   return (
     <SessionProvider session={session}>
       <GlobalStyles />
-      <Component {...pageProps} />
+      <RecoilRoot>
+        <Component {...pageProps} />
+      </RecoilRoot>
     </SessionProvider>
   )
 }

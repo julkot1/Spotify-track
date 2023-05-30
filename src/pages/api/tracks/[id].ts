@@ -7,7 +7,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getServerSession(req, res, authOptions)
   if (session) {
     const token = ((session as any).user as any)['access_token']
-
     const id = req.query.id
 
     const data = await fetchSpotifyGET(
