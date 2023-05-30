@@ -9,7 +9,7 @@ export const authOptions = {
       clientId: process.env.SPOTIFY_ID || 'null',
       clientSecret: process.env.SPOTIFY_SECRET || 'null',
       authorization:
-        'https://accounts.spotify.com/authorize?scope=user-read-email%20user-read-playback-state%20user-modify-playback-state%20user-read-currently-playing%20app-remote-control%20streaming%20user-library-modify%20user-library-read',
+        'https://accounts.spotify.com/authorize?scope=user-read-email%20user-library-read%20user-read-private%20playlist-read-private%20user-top-read',
     }),
   ],
   pages: { signIn: '/auth/signin' },

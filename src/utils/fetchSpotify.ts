@@ -4,6 +4,7 @@ import { getServerSession } from 'next-auth'
 import {
   Album,
   AlbumTrack,
+  Artist,
   Image,
   Me,
   Track,
@@ -18,8 +19,6 @@ const fetchSpotifyGET = async (url: string, token: string) => {
       Authorization: `Bearer ${token}`,
     },
   })
-  console.log(res.status)
-  console.log(token)
 
   if (!res.ok) return null
   return res.json()
@@ -83,6 +82,15 @@ const getAlbum = (raw: any): Album => {
     tracks_next: raw.tracks.next,
   }
 }
+const getArtist = (raw: any): Artist => {
+  return {
+    id: raw.id,
+    name: raw.name,
+    popularity: raw.popularity,
+    genres: raw.genres,
+    images: raw.images,
+  }
+}
 export {
   fetchSpotifyGET,
   getUser,
@@ -91,4 +99,5 @@ export {
   getTrackArtist,
   getAlbum,
   getAlbumTrack,
+  getArtist,
 }

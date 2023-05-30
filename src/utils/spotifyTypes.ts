@@ -46,4 +46,20 @@ interface Album {
   tracks_next: null | string
   popularity: number
 }
-export type { Me, Image, Track, TrackAlbum, TrackArtist, Album, AlbumTrack }
+interface Artist {
+  name: string
+  popularity: number
+  genres: string[]
+  id: string
+  images: Image[]
+}
+export type {
+  Me,
+  Image,
+  Track,
+  TrackAlbum,
+  TrackArtist,
+  Album,
+  AlbumTrack,
+  Artist,
+}
